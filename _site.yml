@@ -1,0 +1,14 @@
+name: "tem2171"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "Resume"
+      href: resume.html
+    - icon: fa-envelope fa-lg
+      href: mailto:<tem2171@cumc.columbia.edu>
+    - icon: fa-github fa-lg
+      href: http://github.com/tem2171/
+output:
+  html_document:
+    theme: cerulean

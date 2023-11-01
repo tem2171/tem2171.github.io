@@ -1,15 +1,14 @@
 ---
-title: "resume"
+title: "Resume"
 output: 
   html_document:
     toc: true
     toc_float: true
-    theme: cerulean
 ---
 
-# This page has information on my academic and professional experience
+## This page has information on my academic and professional experience
 
-Education
+# Education
 Master of Public Health, In Progress – planned graduation 2024
 Department of Epidemiology, Certificate in Applied Biostatistics and Public Health Data
 GPA: 3.989
@@ -24,7 +23,7 @@ American University of Paris, Paris, France
 St. Stephen’s and St. Agnes School, Alexandria, VA
 2005-2018, Graduated Cum Laude
 
-Research Experience
+# Research Experience
 Research Assistant
 Fetal Heart Society, Children’s National Medical Center, Washington, D.C.
 June 2019- March 2020
@@ -42,7 +41,7 @@ Research Fellowship
 Computational and Statistical Genomics Branch, National Human Genome Research Institute, NIH, Bethesda, Maryland
 June 2023-August 2023
 
-Professional Experience
+# Professional Experience
 Internship
 Global Services Department, Children’s National Medical Center, Washington, D.C
 Summer 2019
@@ -55,7 +54,7 @@ Summer 2019
 SAT Mathematics Private Tutor, Self-employed
 2019-2021
 
-Publications
+# Publications
 Klein J, et al., Demographic patterns of neurodevelopment assessment and care in congenital heart disease, In Progress.
 
 Scheel A, Ssinabulya I, Aliku T, et al. Community study to uncover the full spectrum of rheumatic heart disease in Uganda Heart 2019;105:60-66.
@@ -63,7 +62,7 @@ Scheel A, Ssinabulya I, Aliku T, et al. Community study to uncover the full spec
 Moore, T., Sewell, J. and Mead, J. 63CW1.15 WSSP Duckweed cDNA library Landoltia punctata cDNA similar to myo-inositol-1-phosphate synthase, mRNA sequence
 
 
-University and Community Service
+# University and Community Service
 CIPHER, Citizen’s Public Health Literacy
 Columbia University’s Mailman School of Public Health
 Executive Board, Community Outreach Lead 2022-2023
@@ -76,7 +75,7 @@ Director of Student Orgs, Executive Board, 2021-2022
 Delta Iota Gamma (Anthropology Fraternity, GWU)
 Philanthropy Chair 2021-2022
 
-Extracurriculars
+# Extracurriculars
 Kappa Alpha Theta, initiated sophomore year
 George Washington University
 
@@ -87,11 +86,11 @@ George Washington University
 GW American Medical Women’s Association
 George Washington University
 
-Languages
-English (Native)
+# Languages
+English (Native),
 French (Conversational/Fluent)
 
-Coding Languages
-SAS
-R
+# Coding Languages
+SAS,
+R,
 SQL
