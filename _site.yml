@@ -9,6 +9,9 @@ navbar:
       href: mailto:<tem2171@cumc.columbia.edu>
     - icon: fa-github fa-lg
       href: http://github.com/tem2171/
+    - icon: fa-linkedin fa-lg
+      href: www.linkedin.com/in/tem
+
 output:
   html_document:
-    theme: cerulean
+    theme: readable
