@@ -9,7 +9,7 @@ navbar:
       href: mailto:<tem2171@cumc.columbia.edu>
     - icon: fa-github fa-lg
       href: http://github.com/tem2171/
-    - icon: fa-linkedin fa-lg
+    - icon: fa-brands fa-linkedin-in
       href: www.linkedin.com/in/tem
 
 output:
