@@ -8,3 +8,40 @@ output:
 
 ## Link to resume page
 [resume](resume.html)
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+plot_df = 
+  tibble(
+    x=runif(100),
+    y= 1+2+x+rnorm(100)
+  )
+
+plot_df |>
+  ggplot(aes(x=x, y=y)) +
+  geom_point()
+```
+
+
+Here's a link to the [about](about.html) page
+
+
+# Here's a new section
+
+Here is a bagel from Prestige!
+
+![](pics/bagel.jpeg)
+Here are a bunch of fish in a pong at the botanical gardens!
+
+![](pics/fish.jpeg)
+Here are my friends staring at those fish! 
+
+![](pics/friends.jpeg)
+
+# Other stuff on this page
+
+Definitely there is [plotly](plotly.html) stuff! 
