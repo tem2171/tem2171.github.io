@@ -8,6 +8,7 @@ output:
 
 ```{r include=FALSE}
 library(flexdashboard)
+
 library(tidyverse)
 library(plotly)
 library(p8105.datasets)
@@ -17,8 +18,13 @@ data("instacart")
 # Data cleaning
 instacart |> 
   janitor::clean_names()
+
+avg_orders_per_day <- instacart |> 
+  group_by(order_dow) |> 
+  summarize(avg_orders = n() / n_distinct(order_id))
 ```
 
+-----------------------------------------------------------------------
 
 ## Bar Plot of Number of Items Ordered in Each Aisle
 
@@ -33,21 +39,22 @@ instacart |>
   theme(axis.text.x = element_text(angle = 60, hjust = 1))
 ```
 
+
+-----------------------------------------------------------------------
 ## Line Graph of Average Number of Orders per Day of the Week
 
 ```{r}
-avg_orders_per_day <- instacart |> 
-  group_by(order_dow) |> 
-  summarize(avg_orders = n() / n_distinct(order_id))
-
 line_graph <- ggplot(avg_orders_per_day, aes(x = order_dow, y = avg_orders, group = 1)) + 
   geom_line() + 
   geom_point() + 
   labs(title = "Average Number of Orders per Day of the Week", 
        x = "Day of the Week", 
        y = "Average Number of Orders")
+
+plot(line_graph)
 ```
 
+-----------------------------------------------------------------------
 ## Box and Whisker Plots of Order Hours per Day of the Week
 
 ```{r}
@@ -57,6 +64,8 @@ boxplot <- instacart |>
   labs(title = "Box and Whisker Plot of Order Hours per Day of the Week", 
        x = "Day of the Week", 
        y = "Order Hour of Day")
+
+plot(boxplot)
 ```
 
 
