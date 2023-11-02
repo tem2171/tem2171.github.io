@@ -9,6 +9,15 @@ output:
 ## Link to resume page
 [resume](resume.html)
 
+## Link to projects page
+[projects](projects.html)
+
+## Link to plotly page
+[plotly](plotly.html)
+
+## Link to dashboard page
+[dashboard](dashboard.html)
+
 ```{r}
 library(tidyverse)
 ```
