@@ -1,5 +1,5 @@
 ---
-title: "Plotly"
+title: "Plots"
 output: 
   html_document:
     toc: true
@@ -25,16 +25,13 @@ instacart =
 ```
 ```
 Lets make a bar plot!
-The bar plot shows number of items ordered in each aisle!
+
+The bar plot shows number of products ordered in each aisle!
 ```{r}
-instacart |> 
+  instacart |> 
   count(aisle) |> 
-  filter(n > 10000) |> 
   mutate(aisle = fct_reorder(aisle, n)) |> 
-  ggplot(aes(x = aisle, y = n)) + 
-  geom_bar(stat = "identity", fill = "blue") +  # Use geom_bar for bars
-  labs(title = "Number of items ordered in each aisle") +
-  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+  plot_ly(x = ~aisle, y = ~n, color = ~aisle, type = "bar", colors = "viridis")
 
 ```
 
@@ -61,13 +58,8 @@ print(line_graph)
 
 Lets make box and whiskers plots that shows the order hours of day per day of the week!
 ```{r}
-boxplot <- instacart |>
-  ggplot(aes(x = factor(order_dow), y = order_hour_of_day)) +
-  geom_boxplot() +
-  labs(title = "Box and Whisker Plot of Order Hours per Day of the Week",
-       x = "Day of the Week",
-       y = "Order Hour of Day")
-
-# Show the box and whisker plot
-print(boxplot)
+instacart |>
+  mutate(order_dow = reorder(order_dow, order_hour_of_day)) |>
+  plot_ly(y = ~order_hour_of_day, color = ~order_dow, type = "box", colors = "viridis")
 ```
+
