@@ -33,7 +33,7 @@ rest_inspec_filtered <- rest_inspec_year |>
 
 ```
 
-Cleaned names, separated inspection_date variable into day, month, and year, and filtered to only years 2013 and after in order to narrow down the dataset a bit. Also added a variable for average score for each boro each year.
+Cleaned names, separated inspection_date variable into day, month, and year, and filtered to only years 2013 and after in order to narrow down the dataset a bit. Also added a variable for average score for each borough each year.
 
 Column {data-width=600}
 -----------------------------------------------------------------------
