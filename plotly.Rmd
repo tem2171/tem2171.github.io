@@ -39,6 +39,10 @@ The bar plot shows number of products ordered in each aisle!
 Lets make a line graph of average number of orders per day of the week!
 
 ```{r}
+avg_orders_per_day <- instacart |> 
+  group_by(order_dow) |> 
+  summarize(avg_orders = n() / n_distinct(order_id))
+  
 plot_ly(data = avg_orders_per_day, x = ~order_dow, y = ~avg_orders, type = 'scatter', mode = 'lines+markers') %>%
   layout(title = "Average Number of Orders per Day of the Week",
          xaxis = list(title = "Day of the Week"),
