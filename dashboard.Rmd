@@ -30,14 +30,10 @@ Column {data-width=650}
 ### Bar Plot of Number of Items Ordered in Each Aisle
 
 ```{r}
-instacart |> 
+  instacart |> 
   count(aisle) |> 
-  filter(n > 10000) |> 
   mutate(aisle = fct_reorder(aisle, n)) |> 
-  ggplot(aes(x = aisle, y = n)) + 
-  geom_bar(stat = "identity", fill = "blue") + 
-  labs(title = "Number of Items Ordered in Each Aisle") + 
-  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+  plot_ly(x = ~aisle, y = ~n, color = ~aisle, type = "bar", colors = "viridis")
 ```
 
 Column {data-width=350}
@@ -46,22 +42,17 @@ Column {data-width=350}
 ### Line Graph of Average Number of Orders per Day of the Week
 
 ```{r}
-avg_orders_per_day |> 
-  ggplot(aes(x = order_dow, y = avg_orders)) + 
-  geom_line() + 
-  geom_point() + 
-  labs(title = "Average Number of Orders per Day of the Week", 
-       x = "Day of the Week", 
-       y = "Average Number of Orders")
+plot_ly(data = avg_orders_per_day, x = ~order_dow, y = ~avg_orders, type = 'scatter', mode = 'lines+markers') %>%
+  layout(title = "Average Number of Orders per Day of the Week",
+         xaxis = list(title = "Day of the Week"),
+         yaxis = list(title = "Average Number of Orders"))
+
 ```
 
 ### Box and Whisker Plots of Order Hours per Day of the Week
 
 ```{r}
-instacart |> 
-  ggplot(aes(x = factor(order_dow), y = order_hour_of_day)) + 
-  geom_boxplot() + 
-  labs(title = "Box and Whisker Plot of Order Hours per Day of the Week", 
-       x = "Day of the Week", 
-       y = "Order Hour of Day")
+instacart |>
+  mutate(order_dow = reorder(order_dow, order_hour_of_day)) |>
+  plot_ly(y = ~order_hour_of_day, color = ~order_dow, type = "box", colors = "viridis")
 ```
