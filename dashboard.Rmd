@@ -1,0 +1,70 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+# Load packages and data
+
+```{r include=FALSE}
+library(flexdashboard)
+
+library(tidyverse)
+library(plotly)
+library(p8105.datasets)
+
+data("rest_inspec")
+
+```
+
+Data cleaning
+
+```{r}rest_inspec_year <- rest_inspec |>
+  janitor::clean_names() |>
+  separate(inspection_date, into = c("year", "month", "day"), sep = "-")
+  
+rest_inspec_filtered <- rest_inspec_year |>
+  filter(year>=2013) |>
+  group_by(boro, year) |>
+  mutate(average_score = mean(score, na.rm = TRUE))
+
+
+```
+
+Cleaned names, separated inspection_date variable into day, month, and year, and filtered to only years 2013 and after in order to narrow down the dataset a bit. Also added a variable for average score for each boro each year.
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+
+### Restaurant Inspection Score by Borough, 2013-2017
+
+```{r}
+rest_inspec |>
+  sample_n(size = 10000, replace = TRUE) |>
+  filter(boro != "Missing") |>
+  plot_ly(x= ~inspection_date, y = ~score, color= ~boro, type="scatter", marker = list(size = 3, opacity = 0.5))
+
+```
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### Average Restaurant Inspection Score by Borough, 2013-2017
+
+```{r}
+rest_inspec_filtered |>
+  filter(boro != "Missing") |>
+  plot_ly(y = ~score, color = ~ boro, type = "box")
+
+```
+
+### Number of Restaurants of Various Cuisine Types by Borough
+
+```{r}
+rest_inspec_filtered |>
+  filter(cuisine_description %in% c("American", "Italian", "Korean", "Thai", "Chinese", "Seafood", "Portuguese", "Mediterranean", "Sandwiches", "Spanish", "African", "Irish", "Mexican", "Delicatessen")) |>
+    filter(boro != "Missing") |>
+  plot_ly(x = ~cuisine_description, color = ~boro, type = "histogram")
+```
