@@ -6,7 +6,7 @@ output:
     vertical_layout: fill
 ---
 
-```{r include=FALSE}
+```{r setup, include=FALSE}
 library(flexdashboard)
 
 library(tidyverse)
@@ -24,9 +24,10 @@ avg_orders_per_day <- instacart |>
   summarize(avg_orders = n() / n_distinct(order_id))
 ```
 
+Column {data-width=650}
 -----------------------------------------------------------------------
 
-## Bar Plot of Number of Items Ordered in Each Aisle
+### Bar Plot of Number of Items Ordered in Each Aisle
 
 ```{r}
 instacart |> 
@@ -39,9 +40,10 @@ instacart |>
   theme(axis.text.x = element_text(angle = 60, hjust = 1))
 ```
 
-
+Column {data-width=350}
 -----------------------------------------------------------------------
-## Line Graph of Average Number of Orders per Day of the Week
+
+### Line Graph of Average Number of Orders per Day of the Week
 
 ```{r}
 line_graph <- ggplot(avg_orders_per_day, aes(x = order_dow, y = avg_orders, group = 1)) + 
@@ -50,12 +52,9 @@ line_graph <- ggplot(avg_orders_per_day, aes(x = order_dow, y = avg_orders, grou
   labs(title = "Average Number of Orders per Day of the Week", 
        x = "Day of the Week", 
        y = "Average Number of Orders")
-
-plot(line_graph)
 ```
 
------------------------------------------------------------------------
-## Box and Whisker Plots of Order Hours per Day of the Week
+### Box and Whisker Plots of Order Hours per Day of the Week
 
 ```{r}
 boxplot <- instacart |> 
@@ -64,8 +63,4 @@ boxplot <- instacart |>
   labs(title = "Box and Whisker Plot of Order Hours per Day of the Week", 
        x = "Day of the Week", 
        y = "Order Hour of Day")
-
-plot(boxplot)
 ```
-
-
