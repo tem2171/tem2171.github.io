@@ -9,7 +9,7 @@ output:
 ## Link to resume page
 [resume](resume.html)
 
-## Link to plots page
+## Link to plotly page
 [plotly](plotly.html)
 
 ## Link to dashboard page
