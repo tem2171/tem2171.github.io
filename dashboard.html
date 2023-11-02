@@ -251,6 +251,12 @@ $(document).ready(function () {
   <a href="resume.html">Resume</a>
 </li>
 <li>
+  <a href="plotly.html">Plotly</a>
+</li>
+<li>
+  <a href="dashboard.html">Dashboard</a>
+</li>
+<li>
   <a href="mailto:&lt;tem2171@cumc.columbia.edu&gt;">
     <span class="fa fa-envelope fa-lg"></span>
      
@@ -303,22 +309,25 @@ class="section level3">
 <div id="line-graph-of-average-number-of-orders-per-day-of-the-week"
 class="section level3">
 <h3>Line Graph of Average Number of Orders per Day of the Week</h3>
-<pre class="r"><code>line_graph &lt;- ggplot(avg_orders_per_day, aes(x = order_dow, y = avg_orders, group = 1)) + 
+<pre class="r"><code>avg_orders_per_day |&gt; 
+  ggplot(aes(x = order_dow, y = avg_orders)) + 
   geom_line() + 
   geom_point() + 
   labs(title = &quot;Average Number of Orders per Day of the Week&quot;, 
        x = &quot;Day of the Week&quot;, 
        y = &quot;Average Number of Orders&quot;)</code></pre>
+<p><img src="dashboard_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 <div id="box-and-whisker-plots-of-order-hours-per-day-of-the-week"
 class="section level3">
 <h3>Box and Whisker Plots of Order Hours per Day of the Week</h3>
-<pre class="r"><code>boxplot &lt;- instacart |&gt; 
+<pre class="r"><code>instacart |&gt; 
   ggplot(aes(x = factor(order_dow), y = order_hour_of_day)) + 
   geom_boxplot() + 
   labs(title = &quot;Box and Whisker Plot of Order Hours per Day of the Week&quot;, 
        x = &quot;Day of the Week&quot;, 
        y = &quot;Order Hour of Day&quot;)</code></pre>
+<p><img src="dashboard_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 </div>
 

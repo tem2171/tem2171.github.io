@@ -46,7 +46,8 @@ Column {data-width=350}
 ### Line Graph of Average Number of Orders per Day of the Week
 
 ```{r}
-line_graph <- ggplot(avg_orders_per_day, aes(x = order_dow, y = avg_orders, group = 1)) + 
+avg_orders_per_day |> 
+  ggplot(aes(x = order_dow, y = avg_orders)) + 
   geom_line() + 
   geom_point() + 
   labs(title = "Average Number of Orders per Day of the Week", 
@@ -57,7 +58,7 @@ line_graph <- ggplot(avg_orders_per_day, aes(x = order_dow, y = avg_orders, grou
 ### Box and Whisker Plots of Order Hours per Day of the Week
 
 ```{r}
-boxplot <- instacart |> 
+instacart |> 
   ggplot(aes(x = factor(order_dow), y = order_hour_of_day)) + 
   geom_boxplot() + 
   labs(title = "Box and Whisker Plot of Order Hours per Day of the Week", 
