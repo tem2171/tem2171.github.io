@@ -6,60 +6,68 @@ output:
     toc_float: true
 ---
 
-# Plotly
-
 We're making interactive plots
 
 
-```{r}
+```{r include=FALSE}
 library(tidyverse)
 library(plotly)
 library(p8105.datasets)
 ```
 
 
-Focusing on NYC Airbnb data
+```{r INCLUDE=FALSE}
+data("instacart")
 
+instacart = 
+  instacart |> 
+  as_tibble()
+```
+```
+Lets make a bar plot!
+The bar plot shows number of items ordered in each aisle!
 ```{r}
-data("nyc_airbnb")
+instacart |> 
+  count(aisle) |> 
+  filter(n > 10000) |> 
+  mutate(aisle = fct_reorder(aisle, n)) |> 
+  ggplot(aes(x = aisle, y = n)) + 
+  geom_bar(stat = "identity", fill = "blue") +  # Use geom_bar for bars
+  labs(title = "Number of items ordered in each aisle") +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
 
-nyc_airbnb = 
-  nyc_airbnb |>
-  mutate(stars = review_scores_location / 2) |>
-  select(borough = neighbourhood_group, neighbourhood, stars, price, room_type, lat, long) |>
-  drop_na(stars) |>
-  filter(
-    borough == "Manhattan",
-    room_type == "Entire home/apt",
-    price %in% 100:500)
 ```
 
 
-Let's make a scatterplot!
+Lets make a line graph of average number of orders per day of the week!
 
 ```{r}
-nyc_airbnb |>
-  mutate(text_label = str_c("Price: $", price, "\nRating: ", stars)) |>
-  plot_ly(
-    x = ~lat, y = ~long, color= ~price, text = ~text_label,
-    type = "scatter", mode = "markers")
+avg_orders_per_day <- instacart |>
+  group_by(order_dow) |>
+  summarize(avg_orders = n() / n_distinct(order_id))
+
+# Create a line graph
+line_graph <- ggplot(avg_orders_per_day, aes(x = order_dow, y = avg_orders, group = 1)) +
+  geom_line() +
+  geom_point() +
+  labs(title = "Average Number of Orders per Day of the Week",
+       x = "Day of the Week",
+       y = "Average Number of Orders")
+
+# Show the line graph
+print(line_graph)
 ```
 
 
-Let's make a box plot
-
+Lets make box and whiskers plots that shows the order hours of day per day of the week!
 ```{r}
-nyc_airbnb |>
-  mutate(neighbourhood = fct_reorder(neighbourhood, price)) |>
-  plot_ly(y = ~price, color = ~ neighbourhood, type = "box")
-```
+boxplot <- instacart |>
+  ggplot(aes(x = factor(order_dow), y = order_hour_of_day)) +
+  geom_boxplot() +
+  labs(title = "Box and Whisker Plot of Order Hours per Day of the Week",
+       x = "Day of the Week",
+       y = "Order Hour of Day")
 
-
-Let's make a bar plot
-
-```{r}
-nyc_airbnb |>
-  count(neighbourhood) |>
-  mutate(neighbourhood = fct_reorder(neighbourhood, n)) |>
-  plot_ly(x= ~neighbourhood, y = ~n, color=~neighbourhood, type="bar")
+# Show the box and whisker plot
+print(boxplot)
 ```
